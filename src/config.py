@@ -32,10 +32,11 @@ class Config:
     
     @classmethod
     def validate(cls):
-        if not cls.OPENAI_API_KEY:
-            raise ValueError("OPENAI_API_KEY not found in environment variables")
-        
         cls.DATA_DIR.mkdir(exist_ok=True)
         cls.TEMP_DIR.mkdir(exist_ok=True)
+        
+        if not cls.OPENAI_API_KEY:
+            print("⚠️  OpenAI API key not found - some features will be limited")
+            print("   Set OPENAI_API_KEY in .env file for full functionality")
         
         return True
